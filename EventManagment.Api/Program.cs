@@ -1,3 +1,5 @@
+using EventManagment.Api.Services;
+using EventManagment.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EventManagment.Api.Data.ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Di injections 
+builder.Services.AddScoped<IEventService, EventService>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventManagment.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260829111234_intialmigrate")]
-    partial class intialmigrate
+    [Migration("20260830080807_includedescriptionInEvent")]
+    partial class includedescriptionInEvent
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,12 +100,19 @@ namespace EventManagment.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("EventDate")
+                    b.Property<string>("EventDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventEndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EventName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventStartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("EventId");
 
