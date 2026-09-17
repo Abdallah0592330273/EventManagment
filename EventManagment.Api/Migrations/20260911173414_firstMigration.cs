@@ -57,25 +57,13 @@ namespace EventManagment.Api.Migrations
                 {
                     EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EventName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EventDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    EventDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EventEndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.EventId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventTagTrackings",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TagId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TagAddedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventTagTrackings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,6 +178,7 @@ namespace EventManagment.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -264,9 +253,6 @@ namespace EventManagment.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "EventTagTrackings");
 
             migrationBuilder.DropTable(
                 name: "Tags");

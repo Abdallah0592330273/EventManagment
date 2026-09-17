@@ -14,6 +14,7 @@ builder.Services.AddDbContext<EventManagment.Api.Data.ApplicationDbContext>(opti
 
 //Di injections 
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<ITagService, TagService>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 

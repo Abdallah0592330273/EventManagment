@@ -116,31 +116,15 @@ namespace EventManagment.Api.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("EventManagment.Api.Models.EventTagTracking", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EventId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("TagAddedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("TagId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventTagTrackings");
-                });
-
             modelBuilder.Entity("EventManagment.Api.Models.Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("EventId")
                         .HasColumnType("uniqueidentifier");
@@ -292,7 +276,7 @@ namespace EventManagment.Api.Migrations
             modelBuilder.Entity("EventManagment.Api.Models.Tag", b =>
                 {
                     b.HasOne("EventManagment.Api.Models.Event", null)
-                        .WithMany("tags")
+                        .WithMany("Tags")
                         .HasForeignKey("EventId");
                 });
 
@@ -349,7 +333,7 @@ namespace EventManagment.Api.Migrations
 
             modelBuilder.Entity("EventManagment.Api.Models.Event", b =>
                 {
-                    b.Navigation("tags");
+                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,12 +5,12 @@ namespace EventManagment.Api.Services.Interfaces
 {
     public interface IEventService
     {
-        Task<IEnumerable<Event>> GetAll();
+        Task<List<Event>> GetAll(CancellationToken cancellationToken=default);
       //  Task<IEnumerable<Tag>> GetEventTags(int userId);
-        Task<Event?> GetById(Guid id);
-        Task<Guid> AddEvent(AddEventDto newEvent);
-        void UpdateEvent(int id ,Event updatedEvent);
-        bool DeleteEvent(int id);
+        Task<Event?> GetById(Guid id, CancellationToken cancellationToken = default);
+        Task<Guid> AddEvent(Event newEvent, CancellationToken cancellationToken = default);
+        Task UpdateEvent(Guid id, Event uEvent,CancellationToken cancellationToken = default);
+        Task<bool> DeleteEvent(Event e,CancellationToken cancellationToken = default);
         
     }
 }

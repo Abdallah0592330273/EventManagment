@@ -14,11 +14,14 @@ namespace EventManagment.Api.Data
         }
         public DbSet<Event> Events { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<EventTagTracking> EventTagTrackings { get; set; }
     
     public void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(
+           typeof(ApplicationDbContext).Assembly);
+
             base.OnModelCreating(modelBuilder);
-            
+
+
         }
     } }
